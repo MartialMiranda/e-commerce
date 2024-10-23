@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro - Mi Ecommerce</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-900 text-white">
+    <header class="bg-gray-800 shadow-lg">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="text-2xl font-bold text-white">
+                <a href="/" class="hover:text-blue-400 transition duration-300">Mi Tienda</a>
+            </div>
+            <nav class="space-x-4 hidden md:block">
+                <a href="#" class="text-gray-300 hover:text-white transition duration-300">Categorías</a>
+                <a href="#" class="text-gray-300 hover:text-white transition duration-300">Ofertas</a>
+                <a href="#" class="text-gray-300 hover:text-white transition duration-300">Carrito</a>
+                <a href="#" class="text-gray-300 hover:text-white transition duration-300">Mi cuenta</a>
+            </nav>
+            <div class="hidden md:flex items-center space-x-2">
+                <a href="/login" class="text-gray-300 hover:text-white">Login</a>
+                <a href="/register" class="text-gray-300 hover:text-white">Registrarse</a>
+            </div>
+        </div>
+    </header>
+    <main class="container mx-auto px-4 py-8">
+        <h1 class="text-3xl font-bold text-center">Registrarse</h1>
+        <form id="register-form" class="max-w-md mx-auto mt-6">
+            <div class="mb-4">
+                <label class="block text-gray-400" for="nombre">Nombre:</label>
+                <input class="w-full px-4 py-2 border border-gray-600 rounded-md bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-blue-500" type="text" id="nombre" required>
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-400" for="email">Correo Electrónico:</label>
+                <input class="w-full px-4 py-2 border border-gray-600 rounded-md bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-blue-500" type="email" id="email" required>
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-400" for="contraseña">Contraseña:</label>
+                <input class="w-full px-4 py-2 border border-gray-600 rounded-md bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-blue-500" type="password" id="contraseña" required>
+            </div>
+            <button type="submit" class="w-full px-4 py-2 bg-green-600 hover:bg-green-700 rounded-md transition duration-300">Registrarse</button>
+        </form>
+    </main>
+    <script>
+        const form = document.getElementById('register-form');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const nombre = document.getElementById('nombre').value;
+            const email = document.getElementById('email').value;
+            const contraseña = document.getElementById('contraseña').value;
+
+            const response = await fetch('/api/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ nombre, email, contraseña })
+            });
+
+            const data = await response.json();
+            if (data.success) {
+                alert('Registro exitoso');
+                window.location.href = '/login'; // Redirigir a la página de login
+            } else {
+                alert(data.message);
+            }
+        });
+    </script>
+</body>
+</html>

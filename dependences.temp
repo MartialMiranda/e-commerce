@@ -1,0 +1,44 @@
+npm install express pg pg-promise bcrypt dotenv jsonwebtoken express-validator
+
+npm install --save-dev nodemon
+
+npx nodemon server.js
+
+JWT_SECRET = node -e "console.log(require('crypto').randomBytes(32).toString('hex'));"
+
+
+estructure
+
+ecommerce/
+│
+├── backend/
+│   ├── controllers/
+│   │   ├── productController.js # Controlador para productos
+│   │   ├── orderController.js  # Controlador para pedidos
+│   ├── models/
+│   │   ├── dao.js          # Modelo para productos
+│   ├── routes/
+│   │   ├── productRoutes.js    # Rutas de productos
+│   │   ├── orderRoutes.js      # Rutas de pedidos
+│   ├── server.js               # Servidor principal de Express
+│   ├── package-lock.json
+│   ├── package.json
+│   └── .env                    # Variables de entorno
+│
+└── frontend/
+    ├── public/
+    │   ├── css/                # Archivos CSS
+    │   │   └── bootstrap.css
+    │   │   └── Site.css
+    │   │   └── toastr.css
+    │   ├── icons/              # Iconos svg
+    │   └── js/                 # Archivos JavaScript
+    │       └── bootstrap.js
+    │       └── jquery-3.7.1.js
+    │       └── toastr.js
+    │       └── utiles.js       # Maneja la solicitux Ajax y GetUrlBackend
+    ├── views/
+    │   ├── login.ejs           # Vista para login
+    │   ├── register.ejs        # Vista para registro
+    │   ├── home.ejs            # Vista para la página principal
+    └── index.html    
